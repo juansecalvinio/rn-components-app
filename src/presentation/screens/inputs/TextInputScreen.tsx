@@ -1,3 +1,4 @@
+import {useContext, useState} from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -10,9 +11,10 @@ import {CustomView} from '../../components/ui/CustomView';
 import {Title} from '../../components/ui/Title';
 import {globalStyles} from '../../../config/theme/theme';
 import {Card} from '../../components/ui/Card';
-import {useState} from 'react';
+import {ThemeContext} from '../../context/ThemeContext';
 
 export const TextInputScreen = () => {
+  const {colors} = useContext(ThemeContext);
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -21,14 +23,14 @@ export const TextInputScreen = () => {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined }>
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <ScrollView>
         <CustomView margin>
           <Title text="Text Inputs" safe />
 
           <Card>
             <TextInput
-              style={globalStyles.input}
+              style={[globalStyles.input, {color: colors.text}]}
               placeholder="Nombre completo"
               autoCapitalize={'words'}
               autoCorrect={false}
@@ -36,7 +38,7 @@ export const TextInputScreen = () => {
             />
 
             <TextInput
-              style={globalStyles.input}
+              style={[globalStyles.input, {color: colors.text}]}
               placeholder="Correo electrónico"
               autoCapitalize={'none'}
               autoCorrect={false}
@@ -45,7 +47,7 @@ export const TextInputScreen = () => {
             />
 
             <TextInput
-              style={globalStyles.input}
+              style={[globalStyles.input, {color: colors.text}]}
               placeholder="Teléfono"
               keyboardType="phone-pad"
               onChangeText={value => setForm({...form, phone: value})}
@@ -55,20 +57,42 @@ export const TextInputScreen = () => {
           <View style={{height: 10}} />
 
           <Card>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
-            <Text>{JSON.stringify(form, null, 2)}</Text>
+            <Text style={{color: colors.text}}>
+              {JSON.stringify(form, null, 2)}
+            </Text>
+            <Text style={{color: colors.text}}>
+              {JSON.stringify(form, null, 2)}
+            </Text>
+            <Text style={{color: colors.text}}>
+              {JSON.stringify(form, null, 2)}
+            </Text>
+            <Text style={{color: colors.text}}>
+              {JSON.stringify(form, null, 2)}
+            </Text>
+            <Text style={{color: colors.text}}>
+              {JSON.stringify(form, null, 2)}
+            </Text>
+            <Text style={{color: colors.text}}>
+              {JSON.stringify(form, null, 2)}
+            </Text>
+            <Text style={{color: colors.text}}>
+              {JSON.stringify(form, null, 2)}
+            </Text>
+            <Text style={{color: colors.text}}>
+              {JSON.stringify(form, null, 2)}
+            </Text>
+            <Text style={{color: colors.text}}>
+              {JSON.stringify(form, null, 2)}
+            </Text>
+            <Text style={{color: colors.text}}>
+              {JSON.stringify(form, null, 2)}
+            </Text>
+            <Text style={{color: colors.text}}>
+              {JSON.stringify(form, null, 2)}
+            </Text>
           </Card>
 
-          <View style={{ height: 20 }} />
+          <View style={{height: 20}} />
 
           <Card>
             <TextInput
@@ -80,8 +104,7 @@ export const TextInputScreen = () => {
           </Card>
         </CustomView>
 
-          <View style={{ height: 20 }} />
-
+        <View style={{height: 20}} />
       </ScrollView>
     </KeyboardAvoidingView>
   );

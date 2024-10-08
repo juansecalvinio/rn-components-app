@@ -1,10 +1,13 @@
-import {Modal, Platform, Text, View} from 'react-native';
+import {useContext, useState} from 'react';
+import {Modal, Platform, View} from 'react-native';
 import {CustomView} from '../../components/ui/CustomView';
 import {Title} from '../../components/ui/Title';
 import {Button} from '../../components/ui/Button';
-import {useState} from 'react';
+import {ThemeContext} from '../../context/ThemeContext';
 
 export const ModalScreen = () => {
+  const {colors} = useContext(ThemeContext);
+
   const [isVisible, setIsVisible] = useState(false);
 
   return (
@@ -17,26 +20,22 @@ export const ModalScreen = () => {
         <View
           style={{
             flex: 1,
-            backgroundColor: 'rgba(0,0,0,0.1)',
+            backgroundColor: colors.cardBackground,
           }}>
-          
           <View style={{paddingHorizontal: 10}}>
             <Title text="Modal Content" safe />
           </View>
 
-          <View style={{ flex: 1 }} />
+          <View style={{flex: 1}} />
 
-          <Button 
+          <Button
             text="Cerrar Modal"
-            onPress={ () => setIsVisible(false) }
+            onPress={() => setIsVisible(false)}
             styles={{
               height: Platform.OS === 'android' ? 40 : 60,
               borderRadius: 0,
             }}
           />
-
-
-
         </View>
       </Modal>
     </CustomView>

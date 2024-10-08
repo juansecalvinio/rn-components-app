@@ -1,12 +1,12 @@
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import {ActivityIndicator, Image, Text, View} from 'react-native';
-import {CustomView} from '../../components/ui/CustomView';
-import {Title} from '../../components/ui/Title';
 import {FlatList} from 'react-native-gesture-handler';
-import {colors} from '../../../config/theme/theme';
 import {FadeInImage} from '../../components/ui/FadeInImage';
+import {ThemeContext} from '../../context/ThemeContext';
 
 export const InfiniteScrollScreen = () => {
+  const {colors} = useContext(ThemeContext);
+
   const [numbers, setNumbers] = useState([0, 1, 2, 3, 4, 5]);
 
   const loadMore = () => {
@@ -18,7 +18,7 @@ export const InfiniteScrollScreen = () => {
   };
 
   return (
-    <View style={{backgroundColor: 'black'}}>
+    <View style={{backgroundColor: colors.background}}>
       <FlatList
         data={numbers}
         onEndReached={loadMore}
@@ -48,13 +48,5 @@ const ListItem = ({number}: ListItemProps) => {
         width: '100%',
       }}
     />
-    // <Image
-    //   source={{ uri: `https://picsum.photos/id/${number}/500/400` }}
-    // style={{
-    //   height: 400,
-    //   width: '100%'
-    // }}
-
-    // />
   );
 };
